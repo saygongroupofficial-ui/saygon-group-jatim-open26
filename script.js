@@ -53,14 +53,9 @@ function goToPage2() {
   }, 350);
 }
 
-/* ===== Scroll reveal setup for page2 ===== */
 (function setupScrollReveal() {
   const page2 = document.getElementById("page2");
   if (!page2) return;
-
-  // Hero: reveal on load (already has its own CSS animation), skip observer for it.
-
-  // Desc section: heading + paragraphs slide from left, legend slides from right
   const descHeading = page2.querySelector(".desc h2");
   const descParas = page2.querySelectorAll(".desc p");
   if (descHeading) descHeading.classList.add("reveal", "reveal-left");
@@ -77,7 +72,6 @@ function goToPage2() {
     item.style.transitionDelay = 0.15 + i * 0.08 + "s";
   });
 
-  // FAQ sections: heading + intro fade up, each faq-item staggered
   page2.querySelectorAll(".faq h2, .faq-intro").forEach((el) => {
     el.classList.add("reveal");
   });
@@ -89,7 +83,6 @@ function goToPage2() {
     });
   });
 
-  // CTA content
   const ctaInner = page2.querySelector(".cta-inner");
   if (ctaInner) ctaInner.classList.add("reveal", "reveal-scale");
 
@@ -117,21 +110,41 @@ function goToPage2() {
   revealTargets.forEach((el) => observer.observe(el));
 })();
 
-document.querySelectorAll(".faq-item").forEach((item) => {
-  const q = item.querySelector(".faq-q");
-  const a = item.querySelector(".faq-a");
-  if (item.classList.contains("open")) {
-    a.style.maxHeight = a.scrollHeight + "px";
-  }
-  q.addEventListener("click", () => {
-    const isOpen = item.classList.contains("open");
-    document.querySelectorAll(".faq-item").forEach((other) => {
-      other.classList.remove("open");
-      other.querySelector(".faq-a").style.maxHeight = 0;
-    });
-    if (!isOpen) {
-      item.classList.add("open");
+(function setupFaqAccordion() {
+  function syncOpenHeights() {
+    document.querySelectorAll(".faq-item.open .faq-a").forEach((a) => {
       a.style.maxHeight = a.scrollHeight + "px";
-    }
+    });
+  }
+
+  document.querySelectorAll(".faq-list").forEach((list) => {
+    const items = list.querySelectorAll(".faq-item");
+    items.forEach((item) => {
+      const q = item.querySelector(".faq-q");
+      const a = item.querySelector(".faq-a");
+      if (item.classList.contains("open")) {
+        a.style.maxHeight = a.scrollHeight + "px";
+      }
+      q.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        items.forEach((other) => {
+          other.classList.remove("open");
+          other.querySelector(".faq-a").style.maxHeight = 0;
+        });
+        if (!isOpen) {
+          item.classList.add("open");
+          a.style.maxHeight = a.scrollHeight + "px";
+        }
+      });
+    });
   });
-});
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncOpenHeights);
+  }
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(syncOpenHeights, 150);
+  });
+})();

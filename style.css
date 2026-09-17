@@ -1,3 +1,46 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("assets/fonts/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("assets/fonts/Poppins-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("assets/fonts/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("assets/fonts/Kanit-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("assets/fonts/Kanit-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kanit";
+  src: url("assets/fonts/Kanit-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ink: #0c0805;
   --ink-2: #150f0a;
@@ -16,6 +59,7 @@
 html,
 body {
   width: 100%;
+  max-width: 100%;
   background: radial-gradient(
     circle at 50% 38%,
     #211609 0%,
@@ -31,10 +75,12 @@ body {
 }
 body {
   overflow: hidden;
+  overflow-x: hidden;
   min-height: 100vh;
 }
 body.page2-active {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .screen {
@@ -42,6 +88,7 @@ body.page2-active {
   inset: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh; /* keeps loading screen full-height even with mobile browser UI chrome */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -244,7 +291,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ===== Scroll reveal (page2) ===== */
 #page2 .reveal {
   opacity: 0;
   transform: translateY(36px);
@@ -444,9 +490,15 @@ html {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  #page2 .legend {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
 }
 #page2 .desc h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5.5vw, 2rem);
   margin-bottom: 22px;
 }
 #page2 .desc p {
@@ -517,7 +569,7 @@ html {
   border-top: 1px solid var(--line);
 }
 #page2 .faq h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5.5vw, 2rem);
   margin-bottom: 8px;
 }
 #page2 .faq-intro {

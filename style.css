@@ -32,6 +32,7 @@ html,
 body {
   width: 100%;
   max-width: 100%;
+  overflow-x: hidden;
   background: radial-gradient(
     circle at 50% 38%,
     #211609 0%,
@@ -49,6 +50,11 @@ body {
   overflow: hidden;
   overflow-x: hidden;
   min-height: 100vh;
+}
+img,
+svg {
+  max-width: 100%;
+  display: block;
 }
 body.page2-active {
   overflow-y: auto;
@@ -305,6 +311,8 @@ html {
   }
 }
 #page2 {
+  overflow-wrap: break-word;
+  word-break: break-word;
   --ink: #1a1f7a;
   --ink-soft: rgba(26, 31, 122, 0.72);
   --olive: #1a1f7a;
@@ -340,6 +348,7 @@ html {
 }
 #page2 .hero {
   max-width: none;
+  width: 100%;
   padding: 0;
   position: relative;
   background: var(--ink);
@@ -375,7 +384,9 @@ html {
 #page2 .map-img {
   display: block;
   width: 100%;
+  min-width: 100%;
   height: auto;
+  object-fit: cover;
   transform: scale(1.08);
   animation: kenburns 8s ease-out forwards;
 }

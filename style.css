@@ -979,3 +979,15 @@ body {
     overflow-x: visible !important;
   }
 }
+
+/* ==== FIX SPACE HITAM DI KANAN (mobile) ====
+   Penyebab: .legend memakai animasi masuk translateX(40px) (.reveal-right).
+   Saat belum muncul, tepi kanannya melewati lebar layar (mis. 380px di HP
+   360px). Chrome HP lalu men-zoom-out halaman supaya "muat" 380px, sehingga
+   di kanan tersisa strip kosong berwarna gelap di luar halaman.
+   overflow: hidden pada .desc menahan geseran itu di dalam section, jadi
+   tidak ada lagi lebar berlebih yang dihitung browser (tanpa mengubah
+   tampilan animasinya). */
+#page2 .desc {
+  overflow: hidden;
+}

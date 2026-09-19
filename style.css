@@ -186,7 +186,7 @@ svg.mark {
 .word .big .letter {
   font-size: 38px;
   font-weight: 800;
-  letter-spacing: 4px;
+  letter-spacing: var(--ls);
   background: linear-gradient(
     100deg,
     var(--gold-1),
@@ -200,11 +200,23 @@ svg.mark {
 .word .small .letter {
   font-size: 22px;
   font-weight: 600;
-  letter-spacing: 9px;
+  letter-spacing: var(--ls);
   color: var(--gold-3);
 }
 .word .small {
   margin-top: 2px;
+}
+/* letter-spacing selalu menambah jarak setelah huruf TERAKHIR, sehingga teks
+   tampak bergeser ke kiri. Margin negatif sebesar spasi itu mengembalikan
+   teks ke tengah sejajar dengan logo dan progress bar. */
+.word .big {
+  --ls: 4px;
+}
+.word .small {
+  --ls: 9px;
+}
+.word .letters {
+  margin-right: calc(var(--ls) * -1);
 }
 @keyframes letterIn {
   to {
@@ -257,6 +269,32 @@ svg.mark {
   letter-spacing: 2px;
   color: rgba(247, 201, 120, 0.55);
   text-transform: uppercase;
+}
+
+/* Layar pendek (mis. HP posisi landscape): perkecil isi loading supaya
+   tetap muat utuh dan berada di tengah, tidak terpotong atas/bawah. */
+@media (max-height: 420px) {
+  .glow {
+    width: 240px;
+    height: 240px;
+  }
+  .mark-wrap,
+  svg.mark {
+    width: 130px;
+    height: 122px;
+  }
+  .word {
+    margin-top: 12px;
+  }
+  .word .big .letter {
+    font-size: 26px;
+  }
+  .word .small .letter {
+    font-size: 15px;
+  }
+  .progress-wrap {
+    margin-top: 20px;
+  }
 }
 /* Loading */
 

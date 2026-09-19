@@ -207,6 +207,40 @@ function setupFaqAccordion() {
   window.addEventListener("load", syncOpenHeights);
 }
 
+function setupMascotCompanion() {
+  const companion = document.getElementById("mascotCompanion");
+  if (!companion) return;
+
+  const TRACK_TOP_VH = 16;
+  const TRACK_BOTTOM_VH = 80;
+  let ticking = false;
+
+  function update() {
+    const maxScroll = Math.max(
+      1,
+      document.documentElement.scrollHeight - window.innerHeight,
+    );
+    const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+    const topVh = TRACK_TOP_VH + progress * (TRACK_BOTTOM_VH - TRACK_TOP_VH);
+    companion.style.top = topVh + "vh";
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+  window.addEventListener("resize", update);
+
+  update();
+}
+
 function init() {
   try {
     setupLoadingScreen();
@@ -222,6 +256,11 @@ function init() {
     setupFaqAccordion();
   } catch (err) {
     console.error("FAQ accordion error:", err);
+  }
+  try {
+    setupMascotCompanion();
+  } catch (err) {
+    console.error("Mascot companion error:", err);
   }
 }
 

@@ -971,3 +971,127 @@ body {
 #page2 .desc {
   overflow: hidden;
 }
+
+/* ============ Maskot ============ */
+.mascot {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 10px 18px rgba(26, 31, 122, 0.25));
+}
+
+@keyframes mascotBob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+@keyframes mascotBobSmall {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(4deg);
+  }
+}
+
+/* Mengapung di pojok kanan-bawah peta hero */
+#page2 .mascot-hero {
+  position: absolute;
+  right: clamp(10px, 3vw, 32px);
+  bottom: clamp(10px, 2vw, 28px);
+  width: clamp(96px, 14vw, 190px);
+  z-index: 4;
+  animation: mascotBob 4.5s ease-in-out infinite;
+}
+@media (max-width: 640px) {
+  #page2 .mascot-hero {
+    width: 84px;
+    right: 8px;
+    bottom: 8px;
+  }
+}
+
+/* Maskot yang mengikuti posisi scroll di sisi kanan halaman */
+.mascot-companion {
+  position: fixed;
+  top: 16vh;
+  right: 12px;
+  width: 76px;
+  z-index: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: top 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html.page2-ready .mascot-companion {
+  opacity: 1;
+  transition:
+    top 0.28s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.6s ease 0.3s;
+}
+.mascot-companion-img {
+  width: 100%;
+  animation: mascotBob 3.6s ease-in-out infinite;
+}
+@media (max-width: 760px) {
+  .mascot-companion {
+    width: 56px;
+    right: 6px;
+  }
+}
+@media (max-width: 420px) {
+  .mascot-companion {
+    width: 44px;
+    opacity: 0.85;
+  }
+}
+
+/* Mengintip di pojok CTA */
+#page2 .cta {
+  overflow: visible;
+}
+#page2 .mascot-cta {
+  position: absolute;
+  left: clamp(6px, 4vw, 48px);
+  bottom: clamp(-26px, -4vw, -10px);
+  width: clamp(84px, 11vw, 150px);
+  z-index: 1;
+  opacity: 0.95;
+  animation: mascotBob 5s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+@media (max-width: 760px) {
+  #page2 .mascot-cta {
+    display: none;
+  }
+}
+
+/* Ikon kecil di footer */
+#page2 footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+#page2 .mascot-footer {
+  width: 26px;
+  height: auto;
+  animation: mascotBobSmall 3.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot,
+  .mascot-hero,
+  .mascot-companion-img,
+  .mascot-cta,
+  .mascot-footer {
+    animation: none !important;
+  }
+  .mascot-companion {
+    transition: opacity 0.6s ease !important;
+  }
+}

@@ -206,9 +206,6 @@ svg.mark {
 .word .small {
   margin-top: 2px;
 }
-/* letter-spacing selalu menambah jarak setelah huruf TERAKHIR, sehingga teks
-   tampak bergeser ke kiri. Margin negatif sebesar spasi itu mengembalikan
-   teks ke tengah sejajar dengan logo dan progress bar. */
 .word .big {
   --ls: 4px;
 }
@@ -271,8 +268,6 @@ svg.mark {
   text-transform: uppercase;
 }
 
-/* Layar pendek (mis. HP posisi landscape): perkecil isi loading supaya
-   tetap muat utuh dan berada di tengah, tidak terpotong atas/bawah. */
 @media (max-height: 420px) {
   .glow {
     width: 240px;
@@ -296,8 +291,6 @@ svg.mark {
     margin-top: 20px;
   }
 }
-/* Loading */
-
 html {
   scroll-behavior: smooth;
 }
@@ -384,6 +377,15 @@ html {
   font-size: clamp(1.8rem, 4vw, 3rem);
   margin: clamp(15px, 3vh, 40px) 0;
   padding: 0 15px;
+}
+#page2 h1.info-center-title {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-self: center;
 }
 
 #page2 .hero {
@@ -834,9 +836,6 @@ html {
   opacity: 1;
   pointer-events: auto;
 }
-
-/* FIX SPACE HITAM DI MOBILE */
-
 #page2 {
   width: 100%;
   max-width: 100%;
@@ -935,13 +934,6 @@ body {
   }
 }
 
-/* ==== SCROLL: satu mekanisme saja ====
-   Hanya viewport (elemen <html>) yang boleh menjadi scroller.
-   - Saat loading (belum ada .page2-ready di <html>): scroll dikunci.
-   - Setelah loading: <html> overflow visible, sehingga overflow-x pada
-     <body> diteruskan ke viewport (mencegah geser ke samping) dan
-     overflow-y otomatis "auto". Jangan beri overflow di html DAN body
-     sekaligus, karena bisa membuat dua scroll container. */
 html:not(.page2-ready) {
   overflow: hidden;
   height: 100%;
@@ -959,9 +951,6 @@ body {
   pointer-events: none !important;
 }
 
-/* Potong sisi kanan/kiri di #page2 (bukan di viewport) supaya elemen
-   .reveal yang digeser translateX tidak melebarkan halaman di HP.
-   "clip" tidak membuat scroll container baru dan sumbu Y tetap visible. */
 #page2,
 #page2.show {
   height: auto !important;
@@ -969,7 +958,6 @@ body {
   overflow-x: clip !important;
   overflow-y: visible !important;
 }
-/* Browser lama tanpa overflow: clip (mis. iOS < 16) */
 @supports not (overflow: clip) {
   body {
     overflow-x: hidden;
@@ -980,14 +968,6 @@ body {
   }
 }
 
-/* ==== FIX SPACE HITAM DI KANAN (mobile) ====
-   Penyebab: .legend memakai animasi masuk translateX(40px) (.reveal-right).
-   Saat belum muncul, tepi kanannya melewati lebar layar (mis. 380px di HP
-   360px). Chrome HP lalu men-zoom-out halaman supaya "muat" 380px, sehingga
-   di kanan tersisa strip kosong berwarna gelap di luar halaman.
-   overflow: hidden pada .desc menahan geseran itu di dalam section, jadi
-   tidak ada lagi lebar berlebih yang dihitung browser (tanpa mengubah
-   tampilan animasinya). */
 #page2 .desc {
   overflow: hidden;
 }

@@ -68,9 +68,6 @@ function setupLoadingScreen() {
   setTimeout(() => {
     if (markWrap) markWrap.classList.add("settled");
   }, 2000);
-
-  // Jika elemen progress bar tidak ada, langsung pindah ke halaman 2
-  // supaya pengunjung tidak terjebak di layar loading.
   if (!fillEl || !statusEl) {
     goToPage2(loading, page2);
     return;
@@ -96,10 +93,6 @@ function setupLoadingScreen() {
     }
     requestAnimationFrame(updatePct);
   }, FILL_START);
-
-  // Jaring pengaman: kalau animasi progress gagal berjalan (mis. tab di
-  // background lama sehingga requestAnimationFrame ditunda browser),
-  // tetap paksa pindah ke halaman 2 setelah beberapa detik.
   setTimeout(
     () => {
       if (loading && !loading.classList.contains("hide")) {

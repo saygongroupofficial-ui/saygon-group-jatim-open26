@@ -209,11 +209,24 @@ function setupFaqAccordion() {
 
 function setupMascotCompanion() {
   const companion = document.getElementById("mascotCompanion");
+  const water = document.getElementById("mascotWater");
   if (!companion) return;
 
   const TRACK_TOP_VH = 16;
   const TRACK_BOTTOM_VH = 80;
+  const SPLASH_THRESHOLD = 4;
   let ticking = false;
+  let lastY = window.scrollY;
+  let splashTimer = null;
+
+  function triggerSplash() {
+    if (!water) return;
+    water.classList.remove("splash");
+    void water.offsetWidth;
+    water.classList.add("splash");
+    clearTimeout(splashTimer);
+    splashTimer = setTimeout(() => water.classList.remove("splash"), 700);
+  }
 
   function update() {
     const maxScroll = Math.max(
@@ -223,6 +236,12 @@ function setupMascotCompanion() {
     const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
     const topVh = TRACK_TOP_VH + progress * (TRACK_BOTTOM_VH - TRACK_TOP_VH);
     companion.style.top = topVh + "vh";
+
+    const currentY = window.scrollY;
+    if (Math.abs(currentY - lastY) > SPLASH_THRESHOLD) {
+      triggerSplash();
+    }
+    lastY = currentY;
     ticking = false;
   }
 

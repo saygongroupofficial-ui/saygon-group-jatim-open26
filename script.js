@@ -1,3 +1,13 @@
+// Selalu mulai dari atas saat halaman dimuat ulang
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+window.scrollTo(0, 0);
+window.addEventListener("beforeunload", () => window.scrollTo(0, 0));
+window.addEventListener("pageshow", (e) => {
+  if (e.persisted) window.scrollTo(0, 0);
+});
+
 let page2Opened = false;
 function typeLine(el, text, startDelay, step) {
   if (!el) return;
@@ -37,6 +47,7 @@ function goToPage2(loading, page2) {
   }
 
   unlockScroll();
+  window.scrollTo(0, 0);
 
   if (loading) {
     loading.classList.add("hide");

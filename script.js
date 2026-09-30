@@ -134,6 +134,12 @@ function setupScrollReveal() {
     });
   });
 
+  page2
+    .querySelectorAll(".tenant h2, .tenant-intro, .tenant-scroll")
+    .forEach((el) => {
+      el.classList.add("reveal");
+    });
+
   const ctaInner = page2.querySelector(".cta-inner");
   if (ctaInner) ctaInner.classList.add("reveal", "reveal-scale");
 

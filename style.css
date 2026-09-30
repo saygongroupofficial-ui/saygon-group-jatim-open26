@@ -971,3 +971,198 @@ body {
 #page2 .desc {
   overflow: hidden;
 }
+/* ===== Tenant layout ===== */
+#page2 .tenant {
+  border-top: 1px solid var(--line);
+}
+#page2 .tenant h2 {
+  font-size: clamp(1.5rem, 5.5vw, 2rem);
+  margin-bottom: 8px;
+}
+#page2 .tenant-intro {
+  margin-bottom: 32px;
+}
+#page2 .tenant-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper-deep);
+}
+#page2 .tenant-plan {
+  display: grid;
+  grid-template-columns: 92px 1fr 64px;
+  gap: 14px;
+  min-width: 980px;
+  padding: 20px;
+}
+#page2 .plan-side {
+  display: grid;
+  grid-template-rows: 1.4fr 1fr 1fr;
+  gap: 10px;
+}
+#page2 .plan-void,
+#page2 .plan-wc,
+#page2 .plan-entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  font-family: "Kanit", sans-serif;
+  font-size: 0.8rem;
+}
+#page2 .plan-void {
+  border: 2px solid var(--line);
+  color: var(--ink-soft);
+}
+#page2 .plan-wc {
+  background: rgba(26, 31, 122, 0.08);
+  color: var(--ink);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+#page2 .plan-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#page2 .row {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  gap: 8px;
+}
+#page2 .aisle {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 10px 0;
+  border-top: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--line);
+}
+#page2 .booth {
+  min-height: 104px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  line-height: 1.2;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+#page2 .booth:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(26, 31, 122, 0.18);
+}
+#page2 .b-num {
+  font-family: "Kanit", sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  min-height: 1.4em;
+}
+#page2 .b-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+#page2 .b-note {
+  font-size: 0.68rem;
+  opacity: 0.75;
+}
+#page2 .booth.free {
+  background: var(--ochre);
+  border-color: transparent;
+}
+#page2 .booth.percent {
+  background: var(--ink);
+  color: var(--paper);
+}
+#page2 .booth.empty {
+  border-style: dashed;
+  border-color: var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+}
+#page2 .booth.loket {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+#page2 .booth.loket .b-name {
+  font-size: 0.9rem;
+}
+#page2 .walk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--ink-soft);
+}
+#page2 .plan-entry {
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(26, 31, 122, 0.08);
+  color: var(--ink);
+}
+#page2 .plan-entry span {
+  font-size: 1.6rem;
+}
+#page2 .plan-entry small {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+#page2 .tenant-hint {
+  display: none;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+#page2 .tenant-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 22px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+#page2 .tenant-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#page2 .tenant-legend .k {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ink);
+}
+#page2 .tenant-legend .k.free {
+  background: var(--ochre);
+  border-color: transparent;
+}
+#page2 .tenant-legend .k.percent,
+#page2 .tenant-legend .k.loket {
+  background: var(--ink);
+}
+#page2 .tenant-legend .k.empty {
+  border-style: dashed;
+  border-color: var(--line);
+}
+@media (max-width: 760px) {
+  #page2 .tenant-hint {
+    display: block;
+  }
+}

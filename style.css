@@ -33,12 +33,7 @@ body {
   width: 100%;
   max-width: 100%;
   background: #ffffff;
-  font-family:
-    "Segoe UI",
-    system-ui,
-    -apple-system,
-    Arial,
-    sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 body {
   min-height: 100vh;
@@ -1175,17 +1170,17 @@ body {
   margin-top: 28px;
 }
 #page2 .tenant-dl-btn {
-  display: inline-flex;
+  display: inline-flex !important; 
   align-items: center;
   gap: 10px;
   padding: 12px 22px;
   border-radius: 999px;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--paper) !important;
   font-family: "Kanit", sans-serif;
   font-size: 0.98rem;
   font-weight: 500;
-  text-decoration: none;
+  text-decoration: none !important;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,

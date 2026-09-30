@@ -33,7 +33,12 @@ body {
   width: 100%;
   max-width: 100%;
   background: #ffffff;
-  font-family: "Poppins", sans-serif;
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    Arial,
+    sans-serif;
 }
 body {
   min-height: 100vh;

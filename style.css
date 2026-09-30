@@ -1166,3 +1166,41 @@ body {
     display: block;
   }
 }
+
+#page2 .tenant-download {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin-top: 28px;
+}
+#page2 .tenant-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "Kanit", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+#page2 .tenant-dl-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(26, 31, 122, 0.25);
+  background: #23299a;
+}
+#page2 .tenant-dl-btn:focus-visible {
+  outline: 3px solid var(--pin);
+  outline-offset: 3px;
+}
+#page2 .tenant-dl-note {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
